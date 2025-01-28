@@ -134,7 +134,7 @@ export default function Cart() {
                     onClick={() => removeFromCart(item.id)}
                   >
                     {/* <img src='/images/brown-bin.png' className="w-4 h-4" alt="Remove item" /> */}
-                    <Image src='/images/brown-bin.png' className="w-4 h-4" alt="Remove item" />
+                    <Image src='/images/brown-bin.png' width={20} height={20} className="cursor-pointer" alt="Remove item" />
                   </button>
                 </div>
               ))

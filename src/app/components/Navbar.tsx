@@ -3,6 +3,7 @@
 import { useContext, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import SearchModal from "./SearchModal";
 import CartMenu from './CartMenu';
 import {CounterContext} from '../contexts/CartCounter'
 
@@ -10,10 +11,14 @@ import {CounterContext} from '../contexts/CartCounter'
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartMenuOpen, setIsCartMenuOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
   const counter = useContext(CounterContext)  
 
   const toggleCartMenu = () => {
     setIsCartMenuOpen((prev) => !prev);
+  };
+  const toggleSearchModal = () => {
+    setIsSearchModalOpen((prev) => !prev);
   };
 
   return (
@@ -46,15 +51,17 @@ export default function Navbar() {
 
             {/* Icons */}
             <div className="hidden md:flex md:items-center sm:space-x-9">
-              <Link href="#" className="text-gray-800 hover:text-purple-600">
+              {/* <Link href="#" className="text-gray-800 hover:text-purple-600">
                 <Image src="/images/account-icon.png" alt="Account" width={22} height={22} quality={100} />
-              </Link>
-              <Link href="#" className="text-gray-800 hover:text-purple-600">
+              </Link> */}
+              <button
+                onClick={toggleSearchModal}
+                className="text-gray-800 hover:text-purple-600">
                 <Image src="/images/search-icon.png" alt="Search" width={22} height={22} quality={100} />
-              </Link>
-              <Link href="#" className="text-gray-800 hover:text-purple-600">
+              </button>
+              {/* <Link href="#" className="text-gray-800 hover:text-purple-600">
                 <Image src="/images/heart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-              </Link>
+              </Link> */}
               {/* Cart Icon */}
               <button
                 className="text-gray-800 hover:text-purple-600 relative"
@@ -135,16 +142,16 @@ export default function Navbar() {
               Contact
             </Link>
             <div className='pl-2 pt-3 flex gap-4'>
-            <Link href="#" className="text-gray-800 hover:text-purple-600">
+            {/* <Link href="#" className="text-gray-800 hover:text-purple-600">
                 <Image src="/images/heart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-              </Link>
+              </Link> */}
               {/* Cart Icon */}
               <button
                 className="text-gray-800 hover:text-purple-600 relative"
                 onClick={toggleCartMenu}
               >
                 <Image src="/images/cart-icon.png" alt="Favorites" width={22} height={22} quality={100} />
-            <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+            <span className="absolute -top-2 -right-2 bg-purple text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
               2 </span>
               </button>
               </div>
@@ -157,6 +164,9 @@ export default function Navbar() {
             <CartMenu onClose={() => setIsCartMenuOpen(false)} />
 
           </div>
+        )}
+        {isSearchModalOpen && (
+          <SearchModal onClose={() => setIsSearchModalOpen(false)} />
         )}
       </nav>
     </>

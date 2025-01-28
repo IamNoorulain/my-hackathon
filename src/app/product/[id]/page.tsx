@@ -132,62 +132,65 @@ export default function ProductDetails() {
           </p>
 
           {/* Size Selection */}
-          <div className="mb-4 sm:mb-6">
-            <h3 className="text-base sm:text-lg mb-2 sm:mb-3">Size</h3>
-            <div className="flex gap-2 sm:gap-4">
-              {['L', 'XL', 'XS'].map((size) => (
-                <button
-                  key={size}
-                  onClick={() => setSelectedSize(size)}
-                  className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg transition-colors text-sm sm:text-base
-                    ${selectedSize === size 
-                      ? 'bg-purple-700 text-white' 
-                      : 'bg-[#F9F1E7] hover:bg-purple-500 hover:text-white'
-                    }`}
-                >
-                  {size}
-                </button>
-              ))}
-            </div>
-          </div>
+          <div className="flex flex-col items-center w-full max-w-md mx-auto">
+      {/* Size Selection */}
+      <div className="w-full mb-4 sm:mb-6">
+        <h3 className="text-base sm:text-lg mb-2 sm:mb-3 text-center">Size</h3>
+        <div className="flex justify-center gap-2 sm:gap-4">
+          {["S","M","L", "XL"].map((size) => (
+            <button
+              key={size}
+              onClick={() => setSelectedSize(size)}
+              className={`w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-lg transition-colors text-sm sm:text-base
+                ${
+                  selectedSize === size
+                    ? "bg-purple-700 text-white"
+                    : "bg-[#F9F1E7] hover:bg-purple-500 hover:text-white"
+                }`}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
+      </div>
 
-          {/* Color Selection */}
-          <div className="mb-6 sm:mb-8">
-            <h3 className="text-base sm:text-lg mb-2 sm:mb-3">Color</h3>
-            <div className="flex gap-2 sm:gap-4">
-              {[
-                { name: 'purple', class: 'bg-purple-500' },
-                { name: 'black', class: 'bg-black' },
-                { name: 'brown', class: 'bg-[#B88E2F]' }
-              ].map((color) => (
-                <button
-                  key={color.name}
-                  onClick={() => setSelectedColor(color.name)}
-                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full ${color.class} transition-transform
-                    ${selectedColor === color.name ? 'scale-125 ring-2 ring-offset-2 ring-gray-300' : ''}
-                  `}
-                />
-              ))}
-            </div>
-          </div>
+      {/* Color Selection */}
+      <div className="w-full mb-6 sm:mb-8">
+        <h3 className="text-base sm:text-lg mb-2 sm:mb-3 text-center">Color</h3>
+        <div className="flex justify-center gap-4 sm:gap-6">
+          {[
+            { name: "black", class: "bg-black" },
+            { name: "brown", class: "bg-[#B88E2F]" },
+            { name: "gray", class: "bg-gray" },
+          ].map((color) => (
+            <button
+              key={color.name}
+              onClick={() => setSelectedColor(color.name)}
+              className={`w-8 h-8 sm:w-10 sm:h-10 rounded-full ${color.class} transition-transform
+                ${selectedColor === color.name ? "scale-125 ring-2 ring-offset-2 ring-purple-600" : ""}
+              `}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
 
           {/* Quantity and Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-6 sm:mb-8">
-            <div className="flex items-center border rounded-lg">
-              <button 
-                onClick={() => handleQuantityChange('decrease')}
-                className="px-3 sm:px-4 py-2 hover:bg-gray-100"
-              >
-                <Minus size={16} className="sm:w-5 sm:h-5" />
-              </button>
-              <span className="px-4 sm:px-6 py-2 text-sm sm:text-base">{quantity}</span>
-              <button 
-                onClick={() => handleQuantityChange('increase')}
-                className="px-3 sm:px-4 py-2 hover:bg-gray-100"
-              >
-                <Plus size={16} className="sm:w-5 sm:h-5" />
-              </button>
-            </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6 sm:mb-8 w-full">
+      <div className="flex items-center justify-center border rounded-lg">
+        <button
+          onClick={() => handleQuantityChange("decrease")}
+          className="px-3 sm:px-4 py-2 hover:bg-gray-100 flex items-center justify-center"
+        >
+          <Minus size={16} className="sm:w-5 sm:h-5" />
+        </button>
+        <span className="px-4 sm:px-6 py-2 text-sm sm:text-base min-w-[3rem] text-center">{quantity}</span>
+        <button
+          onClick={() => handleQuantityChange("increase")}
+          className="px-3 sm:px-4 py-2 hover:bg-gray-100 flex items-center justify-center"
+        >
+          <Plus size={16} className="sm:w-5 sm:h-5" />
+        </button>            </div>
             <button 
               onClick={handleAddToCart}
               className="px-6 sm:px-8 py-2 bg-white border-2 border-purple-700 text-black hover:bg-purple-600 hover:text-white  transition-colors rounded-lg text-sm sm:text-base"

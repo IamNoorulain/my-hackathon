@@ -429,9 +429,11 @@ export default function Checkout() {
                 </Link>
                 .
               </p>
-              <button className="w-3/4  bg-black text-white py-3 px-4 rounded-lg border-purple-600  hover:bg-purple-500  hover:w-full">
+              <Link href='/shiping'>
+              <button className="w-3/4 m-2  bg-black text-white py-3 px-4 rounded-lg border-purple-600  hover:bg-purple-500  hover:w-full">
                 Place order -&gt;
               </button>
+              </Link>
             </div>
           </div>
         </div>
